@@ -1,0 +1,33 @@
+{
+  "name": "intern-ui",
+  "private": true,
+  "version": "0.0.1",
+  "author": {
+    "name": "Jonathan Perez",
+    "email": "jonathan@bluecranegames.com"
+  },
+  "contributors": [
+    {
+      "name": "Jonathan Perez",
+      "email": "jonathan@bluecranegames.com"
+    }
+  ],
+  "engines": {
+    "node": "^4.2.1"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "grunt": "^0.4.5",
+    "grunt-exec": "^0.4.6",
+    "intern": "^3.0.6"
+  },
+  "scripts": {
+    "start": "node server 80",
+    "test": "intern-runner config=tests/intern"
+  },
+  "devDependencies": {
+    "bower": "^1.6.5",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-requirejs": "^0.4.4"
+  }
+}

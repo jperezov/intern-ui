@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTag -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Automated Testing UI</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body ng-app="AutomatedTests" ng-controller="MainCtrl" ng-class="{'hide-scroll': hideScroll}">
+    <div class="container">
+        <h1>Automated Testing UI</h1>
+        <div class="container-fluid">
+            <div class="loader" ng-if="!tests">Loading...</div>
+            <!--suppress HtmlUnknownAttribute -->
+            <site data="test" ng-repeat="test in tests"></site>
+        </div>
+    </div>
+    <overlay ng-view></overlay>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="assets/js/automated-tests.min.js"></script>
+</body>
+</html>

@@ -25,9 +25,15 @@ build/Release
 
 # Dependency directory
 node_modules
+bower_components
 
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
+
+# Some other stuff. You can remove 'em if you want--these are just for me.
+.idea/
+tests/test.txt
+assets/

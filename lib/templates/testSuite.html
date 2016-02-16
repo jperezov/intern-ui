@@ -1,0 +1,31 @@
+<!--suppress ALL -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{data.type}} Tests</h3>
+    </div>
+    <div class="panel-body">
+        {{data.description}}
+    </div>
+    <div class="panel-footer form-inline text-right">
+        <span ng-if="data.type==='functional'">
+            Browser:
+            <select class="form-control" ng-model="data.browser" ng-init="data.browser = '0'">
+                <option value="all">All</option>
+                <option value="0" ng-selected="true">Chrome</option>
+                <option value="1">FireFox</option>
+                <option value="2">Safari</option>
+                <option value="3">IE</option>
+            </select>
+        </span>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Run <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{{data.run.all.url + '/' + data.browser}}">{{data.run.all.name}} <span class="badge pull-right">{{data.run.all.num}}</span></a></li>
+                <li role="separator" class="divider"></li>
+                <li ng-repeat="test in data.run.tests"><a href="{{test.url + '/' + data.browser}}">{{test.name}} <span class="badge pull-right">{{test.num}}</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

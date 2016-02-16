@@ -1,0 +1,23 @@
+<div class="modal permanent">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--suppress HtmlUnknownAnchorTarget -->
+                <a href="#/" class="close" data-dismiss="modal">&times;</a>
+                <h4 class="modal-title site-name">{{site}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="loader" ng-if="!results">Loading...</div>
+                <div class="functional-test-results" ng-if="results">
+                    <table class="table">
+                        <tr ng-repeat="result in results">
+                            <td ng-class="{success: result.pass, danger: result.fail}">{{result.message}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop in"></div>
