@@ -53,6 +53,22 @@ site > h2 {
     content: '\e014';
     color: #cc0000;
 }
+.panel ul.dropdown-menu > li {
+    display: table;
+    width: 100%;
+}
+.panel ul.dropdown-menu > li > a {
+    display: table-row;
+    padding: 5px;
+}
+.panel ul.dropdown-menu > li > a > span {
+    display: table-cell;
+    text-align: right;
+    padding: 0 5px;
+}
+.panel ul.dropdown-menu > li > a > span:first-of-type {
+    text-align: left;
+}
 
 @media (min-width: 768px) {
     .modal.permanent > .modal-dialog {

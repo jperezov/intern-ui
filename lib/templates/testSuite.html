@@ -22,9 +22,19 @@
                 Run <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="{{data.run.all.url + '/' + data.browser}}">{{data.run.all.name}} <span class="badge pull-right">{{data.run.all.num}}</span></a></li>
+                <li>
+                    <a href="{{data.run.all.url + '/' + data.browser}}">
+                        <span>{{data.run.all.name}}</span>
+                        <span><span class="badge">{{data.run.all.num}}</span></span>
+                    </a>
+                </li>
                 <li role="separator" class="divider"></li>
-                <li ng-repeat="test in data.run.tests"><a href="{{test.url + '/' + data.browser}}">{{test.name}} <span class="badge pull-right">{{test.num}}</span></a></li>
+                <li ng-repeat="test in data.run.tests">
+                    <a href="{{test.url + '/' + data.browser}}">
+                        <span>{{test.name}}</span>
+                        <span><span class="badge">{{test.num}}</span></span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
