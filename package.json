@@ -23,7 +23,7 @@
     "start": "node server 80",
     "test": "intern-runner config=tests/intern"
   },
-  "description": "First, `git clone https://github.com/jperezov/intern-ui.git`. Put it in a comfy directory.",
+  "description": "A UI for the intern library. Comes with examples to get you started on testing even faster.",
   "main": "server.js",
   "directories": {
     "test": "tests"
