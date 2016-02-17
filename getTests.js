@@ -2,10 +2,16 @@ var fs = require('fs'),
     sites = fs.readdirSync('./tests/unit'),
     output = { sites: Array.prototype.slice.apply(sites) },
     tests,
-    testCount = 0,
     testTypes = ['unit', 'functional'],
     type,
-    site;
+    site,
+    allKey;
+/**
+ * Using this.testCount so that the context
+ * can be changed when calling countTests()
+ * @type {number}
+ */
+this.testCount = 0;
 
 for (var siteKey in sites) {
     //noinspection JSUnfilteredForInLoop
@@ -17,14 +23,18 @@ for (var siteKey in sites) {
         try {
             tests = fs.readdirSync('./tests/' + type + '/' + site);
             output[site][type] = [];
-            countTests(output, site, type, tests);
-            output[site][type][0].num = testCount;
-            testCount = 0;
+            countTests.apply(this, [output, site, type, tests]);
+            output[site][type][0].num = this.testCount;
+            this.testCount = 0;
         } catch (err) {
             // I mean, we don't *really* need to do anything here.
         }
     }
 }
+/**
+ * Returns tests grouped by file / project, along with a count on the
+ * number of tests.
+ */
 function countTests(output, site, type, tests) {
     var file, filename, test, count;
     try {
@@ -35,7 +45,10 @@ function countTests(output, site, type, tests) {
             if (filename.match(/\.js/)) {
                 file = require(filename)();
                 count = file && file.length || 0;
-                testCount += +count;
+                this.testCount += +count;
+                if (filename.match(/all\.js/)) {
+                    allKey = output[site][type].length;
+                }
                 output[site][type].push({
                     name: test.replace(/\..*/, ''),
                     num: count
@@ -51,7 +64,13 @@ function countTests(output, site, type, tests) {
                     // Gotta append the folder name for nested folders (so the paths match)
                     return test + '/' +val;
                 });
-                countTests(output, site, type, subTests);
+                this.testCount += (function() {
+                    //noinspection JSPotentiallyInvalidUsageOfThis
+                    this.testCount = 0;
+                    countTests.apply(this, [output, site, type, subTests]);
+                    //noinspection JSPotentiallyInvalidUsageOfThis
+                    return output[site][type][allKey].num = this.testCount;
+                })();
             }
         }
     } catch (err) {

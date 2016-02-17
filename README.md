@@ -2,7 +2,7 @@
 
 ## Installation:
 
-`git clone https://github.com/jperezov/intern-ui.git`, then `npm install`, then `bower install`, then `grunt`.
+Go to a comfy directory. Run `npm install intern-ui`, then `npm run-script installation`.
 
 UI is accessible at `localhost:9090`
 

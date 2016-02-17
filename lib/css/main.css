@@ -64,7 +64,7 @@ site > h2 {
 .panel ul.dropdown-menu > li > a > span {
     display: table-cell;
     text-align: right;
-    padding: 0 5px;
+    padding: 3px 15px;
 }
 .panel ul.dropdown-menu > li > a > span:first-of-type {
     text-align: left;
