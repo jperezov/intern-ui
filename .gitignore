@@ -33,6 +33,9 @@ bower_components
 # Optional REPL history
 .node_repl_history
 
+# Don't save your symlinks
+projects/*
+
 # Some other stuff. You can remove 'em if you want--these are just for me.
 .idea/
 tests/test.txt

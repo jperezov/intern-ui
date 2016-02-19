@@ -12,6 +12,9 @@
         <h1>Automated Testing UI</h1>
         <div class="container-fluid">
             <div class="loader" ng-if="!tests">Loading...</div>
+            <div class="alert-danger" ng-if="tests.status">
+                {{tests.statusText}}. Code {{tests.status}} &mdash; could not retrieve tests.
+            </div>
             <!--suppress HtmlUnknownAttribute -->
             <site data="test" ng-repeat="test in tests"></site>
         </div>
