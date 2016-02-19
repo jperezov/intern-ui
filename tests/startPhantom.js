@@ -6,3 +6,4 @@ require('child_process').spawn('phantomjs', ['--webdriver=4444'], {
     stdio: 'ignore',
     detached: true
 }).unref();
+console.log('PhantomJS webdriver listening on port 4444');

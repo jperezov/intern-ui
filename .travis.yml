@@ -11,7 +11,5 @@ addons:
       - g++-4.8
 before_script:
   - bower install
-  - npm install grunt-cli -g
-  - grunt installation
   - node tests/startPhantom
-  - sleep 7
+  - sleep 3
