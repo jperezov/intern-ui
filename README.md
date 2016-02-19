@@ -1,8 +1,10 @@
-# intern-ui 0.0.6 (WIP)
+# intern-ui 0.1.0
+
+Project is now usable! Make sure to _not_ download any version before 0.1.0.
 
 ## Installation:
 
-Go to a comfy directory. Run `npm install intern-ui`.
+In your project directory, run `npm install intern-ui`.
 
 Before you run the next script, a warning: **this will overwrite your `/tests` folder**. It is recommended to
 temporarily rename the folder (assuming you already have a `/tests` folder) and reorganize everything after.
@@ -18,31 +20,6 @@ Now you can run `npm run-script intern-ui`. UI is accessible at `localhost:9090/
 
 If you don't want to add the script to your package.json, feel free to start the server with
 just `node node_modules/intern-ui/server.js`.
-
-## File Structure
-
-Version 0.10.0 will restructure this project to allow for testing within your project directory.
-
-For now though, this project is currently intended to exist _outside_ of your project directory, as a stand-alone project.
-In order to test your project files, add symlinks to the `/projects` folder.
-
-
-### Windows:
-
-    mklink /j "path\to\symlink" path\to\original
-    
-For example, if your project is located on `c:\nodejs\www\yourProject`, put intern-ui in `c:\nodejs\www\intern-ui` and run:
-
-    `mklink /j "c:\nodejs\www\intern-ui\projects\yourProject" c:\nodejs\www\yourProject
-    
-### Mac / Linux:
-
-    ln -s /path/to/original /path/to/symlink
-    
-For example, if your project is located on `/etc/nodejs/www/yourProject`, put intern-ui in `/etc/nodejs/www/intern-ui` and run:
-
-    ln -s /etc/nodejs/www/yourProject /etc/nodejs/www/intern-ui/projects/yourProject
-
 
 ## Reserved Words / Filenames
 

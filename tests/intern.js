@@ -66,8 +66,20 @@ define([
             }
         };
         var includedPackages = {};
+        var suites, internConfig, addSuites;
         // Create a new array for the suites to ensure we don't mess with the test suites.
-        var suites = Array.prototype.slice.apply(intern.args.suites);
+//~~REMOVE_START~~
+        if (intern && intern.args && intern.args.suites) {
+//~~REMOVE_END~~
+            suites = Array.prototype.slice.apply(intern.args.suites);
+//~~REMOVE_START~~
+        } else {
+            suites = [
+                'tests/unit/intern-ui/all'
+            ];
+            addSuites = true;
+        }
+//~~REMOVE_END~~
         // Add packages based on the project being tested
         // Don't mess with this. I mean, you can if you want, but
         // everything will probably break.
@@ -90,7 +102,7 @@ define([
             }
         }
     }
-    return {
+    internConfig = {
         runType: 'runner',
         proxyPort: 9000,
         proxyUrl: 'http://localhost:9000/',
@@ -118,7 +130,7 @@ define([
         // Uncomment if you wanna use saucelabs instead
         // tunnel: 'SauceLabsTunnel',
         tunnelOptions: {
-//            verbose: true, // Uncomment if you need help debugging
+            // verbose: true, // Uncomment if you need help debugging
             username: 'your_username', // <-- You can move this into a config.json thing if you want
             accessKey: 'your_access_key', // <-- This too.
             tunnelId: site + '-' + dateTime
@@ -134,4 +146,10 @@ define([
         // A regular expression matching URLs to files that should not be included in code coverage analysis
         excludeInstrumentation: /node_modules|sauce_connect|tests/
     };
+//~~REMOVE_START~~
+    if (addSuites) {
+        internConfig.suites = suites;
+    }
+//~~REMOVE_END~~
+    return internConfig;
 });
