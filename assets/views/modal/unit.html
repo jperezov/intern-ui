@@ -1,0 +1,38 @@
+<div class="modal permanent">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--suppress HtmlUnknownAnchorTarget -->
+                <a href="#/" class="close" data-dismiss="modal">&times;</a>
+                <h4 class="modal-title site-name">{{site}}</h4>
+            </div>
+            <div class="modal-body embed-responsive">
+                <div class="loader">Loading...</div>
+                <!--suppress HtmlUnknownTarget -->
+                <iframe id="unit-tests" class="embed-responsive-item" onload="_resizeUnitTestIframe(this)" src="{{url}}"></iframe>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop in"></div>
+<script>
+    /**
+     * Resizes the iframe holding the unit tests. Has a funky name to avoid global name conflicts
+     * so that I can just stick it on the onload attribute of the iframe.
+     * @param iframe
+     * @private
+     */
+    function _resizeUnitTestIframe(iframe) {
+        var element = iframe.contentWindow.document.documentElement;
+        if (
+            element.scrollHeight < 100 ||
+            element.scrollHeight > element.clientHeight
+        ) {
+            setTimeout(function() {
+                return _resizeUnitTestIframe(iframe);
+            }, 100);
+        }
+        $('.modal-body.embed-responsive').height(element.scrollHeight + "px");
+    }
+</script>

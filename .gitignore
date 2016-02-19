@@ -39,4 +39,3 @@ projects/*
 # Some other stuff. You can remove 'em if you want--these are just for me.
 .idea/
 tests/test.txt
-assets/
