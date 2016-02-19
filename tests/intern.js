@@ -149,6 +149,9 @@ define([
 //~~REMOVE_START~~
     if (addSuites) {
         internConfig.suites = suites;
+        delete internConfig.tunnelOptions;
+        internConfig.tunnel = 'NullTunnel';
+        internConfig.environments = [ { browserName: 'phantomjs' }]
     }
 //~~REMOVE_END~~
     return internConfig;

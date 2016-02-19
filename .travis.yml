@@ -11,3 +11,4 @@ addons:
       - g++-4.8
 before_script:
   - bower install && npm install grunt-cli -g && grunt installation
+script: phantomjs --webdriver=4444
