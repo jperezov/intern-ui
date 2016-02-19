@@ -14,3 +14,5 @@ before_script:
   - npm install grunt-cli -g
   - grunt installation
   - phantomjs --webdriver=4444
+script:
+  - npm test
