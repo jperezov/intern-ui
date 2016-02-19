@@ -14,3 +14,4 @@ before_script:
   - npm install grunt-cli -g
   - grunt installation
   - node tests/startPhantom
+  - sleep 7
