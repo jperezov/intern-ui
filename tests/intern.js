@@ -51,17 +51,17 @@ define([
              */
             jquery: {
                 name: 'jquery',
-                location: '/bower_components/jquery/dist',
+                location: 'bower_components/jquery/dist',
                 main: 'jquery'
             },
             angular: {
                 name: 'angular',
-                location: '/bower_components/angular',
+                location: 'bower_components/angular',
                 main: 'angular'
             },
             ngRoute: {
                 name: 'ngRoute',
-                location: '/bower_components/angular-route/bower-angular-route-1.5.0',
+                location: 'bower_components/angular-route/bower-angular-route-1.5.0',
                 main: 'angular-route'
             }
         };

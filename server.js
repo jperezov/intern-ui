@@ -6,6 +6,7 @@ var http = require('http'),
     port = process.argv[2] || 9090;
 
 function pathAllowed(uri, type) {
+    uri = uri.replace(/\/node_modules\/intern-ui/, '');
     if (type !== 'allowedPaths' && type !== 'executables') return false;
     this.allowedPaths = [
         '/node_modules/',
@@ -16,8 +17,8 @@ function pathAllowed(uri, type) {
         '/'
     ];
     this.executables = [
-        '^\/getTests.js',
-        '^\/runner.js'
+        '^/getTests.js',
+        '^/runner.js'
     ];
     for (var path in this[type]) {
         if (uri.match(new RegExp(this[type][path], 'i'))) {
@@ -37,7 +38,7 @@ var server = http.createServer(function(request, response) {
 
     fs.exists(filename, function(exists) {
         if(exists && pathAllowed(uri, 'executables')) {
-            command = 'node ' + __dirname + uri + ' ' + query;
+            command = 'node ' + __dirname + uri.replace(/\/node_modules\/intern-ui/, '') + ' ' + query;
             return exec(command, function(error, stdout, stderr) {
                 var err = error || stderr;
                 if(err) {

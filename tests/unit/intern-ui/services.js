@@ -8,13 +8,13 @@ if (typeof define === 'function') {
     define([
         'intern!object',
         'intern/chai!assert',
-        'intern/order!/lib/js/var/URL',
-        'intern/order!/bower_components/angular/angular',
-        'intern/order!/bower_components/angular-route/bower-angular-route-1.5.0/angular-route',
-        'intern/order!/bower_components/angular-mocks/angular-mocks',
-        'intern/order!/lib/js/var/app',
-        'intern/order!/lib/js/services/getTests',
-        'intern/order!/lib/js/services/runFunctionalTests'
+        'intern/order!lib/js/var/URL',
+        'intern/order!bower_components/angular/angular',
+        'intern/order!bower_components/angular-route/bower-angular-route-1.5.0/angular-route',
+        'intern/order!bower_components/angular-mocks/angular-mocks',
+        'intern/order!lib/js/var/app',
+        'intern/order!lib/js/services/getTests',
+        'intern/order!lib/js/services/runFunctionalTests'
     ], test);
 } else {
     module.exports = test;

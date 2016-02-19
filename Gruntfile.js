@@ -21,6 +21,7 @@ module.exports = function(grunt) {
     // Error out if the expected unit and functional tests aren't found
     if (
         task !== 'build' &&
+        task !== 'installation' &&
         !tests[site] &&
         (Array.isArray(tests[site].unit) && Array.isArray(tests[site].functional)) === false
     ) {
@@ -119,6 +120,16 @@ module.exports = function(grunt) {
                         dest: 'assets/css/'
                     }
                 ]
+            },
+            installation: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'tests/',
+                        src: ['**'],
+                        dest: '../../tests'
+                    }
+                ]
             }
         }
     });
@@ -126,9 +137,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask('build', [ 'requirejs', 'copy' ]);
+    grunt.registerTask('build', [ 'requirejs', 'copy:main' ]);
     grunt.registerTask('test', [ 'intern' ]);
     grunt.registerTask('testAllBrowsers', [ 'exec' ]);
+    grunt.registerTask('installation', [ 'build', 'copy:installation' ]);
     grunt.registerTask('default', [ 'build' ]);
 
     /**

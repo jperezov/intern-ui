@@ -2,7 +2,7 @@ var exec = require('child_process').exec,
     queryString = require('querystring'),
     args = queryString.parse(process.argv.splice(2).join('&')),
     testModules = require('./tests/testModules')(args.functionalTest),
-    cmd,
+    cmd = 'cd node_modules/intern-ui && ',
     tests = {},
     browsers = [
         'chrome',
@@ -12,11 +12,11 @@ var exec = require('child_process').exec,
     ];
 
 if (args.site in testModules && args.browser in browsers) {
-    cmd = 'grunt test --site=' + args.site
+    cmd += 'grunt test --site=' + args.site
         + ' --browser=' + args.browser
         + ' --functionalTest=' + args.functionalTest;
 } else if (args.site in testModules && args.browser === 'all') {
-    cmd = 'grunt testAllBrowsers --site=' + args.site + ' --functionalTest=' + args.functionalTest;
+    cmd += 'grunt testAllBrowsers --site=' + args.site + ' --functionalTest=' + args.functionalTest;
 } else {
     console.log('Error: No tests selected');
     return;

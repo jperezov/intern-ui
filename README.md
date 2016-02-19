@@ -1,8 +1,12 @@
-# intern-ui 0.0.5 (WIP)
+# intern-ui 0.0.6 (WIP)
 
 ## Installation:
 
-Go to a comfy directory. Run `npm install intern-ui`. Then run `node node_modules/intern-ui/installation.js`.
+Go to a comfy directory. Run `npm install intern-ui`.
+
+Before you run the next script, a warning: **this will overwrite your `/tests` folder**. It is recommended to
+temporarily rename the folder (assuming you already have a `/tests` folder) and reorganize everything after.
+Now, if that's fine, run `node node_modules/intern-ui/installation.js`.
 
 In your package.json, make sure you have the following:
 
