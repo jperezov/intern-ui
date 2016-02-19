@@ -13,6 +13,4 @@ before_script:
   - bower install
   - npm install grunt-cli -g
   - grunt installation
-  - phantomjs --webdriver=4444
-script:
-  - npm test
+  - node tests/startPhantom
