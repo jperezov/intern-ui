@@ -81,7 +81,8 @@ module.exports = function(grunt) {
                          * within my /lib/js/var/app.js file. It prevents the angular.min.js
                          * file from being concatenated with my custom JS.
                          */
-                        'angular': 'empty:' // <-- the colon (:) is required.
+                        'angular': 'empty:', // <-- the colon (:) is required.
+                        'ngRoute': 'empty:'
                     },
                     rawText: {},
                     /**

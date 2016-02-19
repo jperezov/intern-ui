@@ -62,7 +62,5 @@ function test(registerSuite, assert, URL, USER, hex) {
     registerSuite && registerSuite(tests);
 
     // Output keys for HTML view
-    var keys = Object.keys(tests);
-    keys.splice(0, 1);
-    return keys;
+    return Object.keys(tests);
 }

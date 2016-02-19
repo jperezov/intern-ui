@@ -16,8 +16,8 @@ function pathAllowed(uri, type) {
         '/'
     ];
     this.executables = [
-        'getTests.js',
-        'runner.js'
+        '^\/getTests.js',
+        '^\/runner.js'
     ];
     for (var path in this[type]) {
         if (uri.match(new RegExp(this[type][path], 'i'))) {
@@ -31,15 +31,18 @@ var server = http.createServer(function(request, response) {
 
     var _url = url.parse(request.url),
         uri = _url.pathname,
-        query = _url.query || '&',
-        filename = path.join(process.cwd(), uri);
+        query = (_url.query || '&').replace(/&/g, ' '),
+        filename = path.join(process.cwd(), uri),
+        command;
 
     fs.exists(filename, function(exists) {
         if(exists && pathAllowed(uri, 'executables')) {
-            return exec('node ' + __dirname + uri + ' ' + query.replace('&', ' '), function(error, stdout, stderr) {
-                if(error || stderr) {
+            command = 'node ' + __dirname + uri + ' ' + query;
+            return exec(command, function(error, stdout, stderr) {
+                var err = error || stderr;
+                if(err) {
                     response.writeHead(500, {"Content-Type": "text/plain"});
-                    response.write((error || stderr) + "\n");
+                    response.write((err) + "\n");
                     response.end();
                 } else {
                     response.writeHead(200, {"Content-Type": "text/plain"});

@@ -1,4 +1,7 @@
 /*
+ * This file is nested to show how nested folders are displayed in the UI.
+ * This test will run when
+ *
  * Unit tests must export modules as both AMD (RequireJS) and as node modules. Asynchronous modules
  * are used by The Intern for tests, while the UI itself needs node modules to pull data from.
  */
@@ -17,8 +20,9 @@ if (typeof define === 'function') {
 // This is the test itself
 function test(registerSuite, assert, require /*your dependencies*/) {
     var tests = {
-        // Name of the test suite
-        name: 'template',
+        // Name of the test suite. This is the display name in intern, so make sure to explicitly
+        // write out the file path if you want it displayed
+        name: 'nested/folder/template',
         setup: function() {
             // runs once, at the beginning of the test suite
         },

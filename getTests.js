@@ -36,7 +36,9 @@ for (var siteKey in sites) {
  * number of tests.
  */
 function countTests(output, site, type, tests) {
-    var file, filename, test, count;
+    var file, filename, test, count, key, index;
+    // These are reserved words for intern tests
+    var reserved = ['name', 'setup', 'beforeEach', 'afterEach', 'teardown'];
     try {
         for (var testKey in tests) {
             //noinspection JSUnfilteredForInLoop
@@ -44,6 +46,8 @@ function countTests(output, site, type, tests) {
             filename = './tests/' + type + '/' + site + '/' + test;
             if (filename.match(/\.js/)) {
                 file = require(filename)();
+                // This removes reserved words from the test arrays to keep the test counts accurate.
+                if (file) for (key in reserved) (index = file.indexOf(reserved[key])) > -1 && file.splice(index, 1);
                 count = file && file.length || 0;
                 this.testCount += +count;
                 if (filename.match(/all\.js/)) {

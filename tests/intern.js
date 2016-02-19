@@ -33,6 +33,13 @@ define([
              */
             template: [
                 'jquery'
+            ],
+            /**
+             * The intern-ui project uses angular and angular-route as a dependency, so we include that cPackage here.
+             */
+            'intern-ui': [
+                'angular',
+                'ngRoute'
             ]
         };
         var packages = [];
@@ -40,12 +47,22 @@ define([
         var cPackages = {
             /**
              * These packages are here for when you *don't* want to include a file as a dependency, but *do*
-             * want to include them for testing. If you're not using the
+             * want to include them for testing.
              */
             jquery: {
                 name: 'jquery',
                 location: '/bower_components/jquery/dist',
                 main: 'jquery'
+            },
+            angular: {
+                name: 'angular',
+                location: '/bower_components/angular',
+                main: 'angular'
+            },
+            ngRoute: {
+                name: 'ngRoute',
+                location: '/bower_components/angular-route/bower-angular-route-1.5.0',
+                main: 'angular-route'
             }
         };
         var includedPackages = {};
