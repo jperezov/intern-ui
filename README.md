@@ -1,8 +1,10 @@
-# intern-ui 0.0.4 (WIP)
+# intern-ui 0.0.5 (WIP)
 
 ## Installation:
 
-Go to a comfy directory. Run `npm install intern-ui`. In your package.json, make sure you have the following:
+Go to a comfy directory. Run `npm install intern-ui`. Then run `node node_modules/intern-ui/installation.js`.
+
+In your package.json, make sure you have the following:
 
     "scripts": {
         "intern-ui": "node node_modules/intern-ui/server.js"
