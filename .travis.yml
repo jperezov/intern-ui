@@ -11,5 +11,5 @@ addons:
       - g++-4.8
 before_script:
   - bower install
-  - node tests/startPhantom
+  - phantomjs --webdriver=4444 &
   - sleep 3
