@@ -40,3 +40,5 @@ projects/*
 .idea/
 tests/test.txt
 assets/
+sauce_username.txt
+sauce_access_key.txt

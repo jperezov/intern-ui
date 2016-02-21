@@ -150,8 +150,8 @@ define([
     if (addSuites) {
         internConfig.suites = suites;
         delete internConfig.tunnelOptions;
-        internConfig.tunnel = 'NullTunnel';
-        internConfig.environments = [ { browserName: 'phantomjs' }]
+        internConfig.tunnel = 'SauceLabsTunnel';
+        internConfig.environments = [ { browserName: 'chrome', version: '34', platform: 'Windows 8' }]
     }
 //~~REMOVE_END~~
     return internConfig;
