@@ -1,6 +1,6 @@
-# intern-ui 0.1.0
+# intern-ui 0.1.1
 
-Project is now usable! Make sure to _not_ download any version before 0.1.0.
+Project is now usable! Make sure to _not_ download any version before 0.1.1.
 
 ## Installation:
 
