@@ -1,4 +1,4 @@
-# intern-ui 0.1.1
+# intern-ui 0.1.2 [![Build Status](https://travis-ci.org/jperezov/intern-ui.svg?branch=master)](https://travis-ci.org/jperezov/intern-ui)
 
 Project is now usable! Make sure to _not_ download any version before 0.1.1.
 
