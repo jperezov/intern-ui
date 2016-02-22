@@ -61,7 +61,7 @@ define([
             },
             ngRoute: {
                 name: 'ngRoute',
-                location: 'bower_components/angular-route/bower-angular-route-1.5.0',
+                location: 'bower_components/angular-route/',
                 main: 'angular-route'
             }
         };
@@ -151,7 +151,7 @@ define([
         internConfig.suites = suites;
         delete internConfig.tunnelOptions;
         internConfig.tunnel = 'SauceLabsTunnel';
-        internConfig.environments = [ { browserName: 'chrome', version: '34', platform: 'Windows 8' }]
+        internConfig.environments = [ { browserName: 'chrome', version: '48', platform: 'Windows 8' }]
     }
 //~~REMOVE_END~~
     return internConfig;
