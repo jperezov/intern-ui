@@ -1,5 +1,13 @@
 var fs = require('fs'),
-    sites = fs.readdirSync('./tests/unit'),
+    functionalSites = fs.readdirSync('./tests/functional'),
+    unitSites = fs.readdirSync('./tests/unit'),
+    sites = unitSites.concat(functionalSites.filter(function(i) {
+        // De-duplicate arrays
+        return unitSites.indexOf(i) == -1;
+    })).filter(function(site) {
+        // Don't match files--only folders
+        return !site.match(/\.\w+/);
+    }),
     output = { sites: Array.prototype.slice.apply(sites) },
     tests,
     testTypes = ['unit', 'functional'],

@@ -8,6 +8,7 @@
 .container > .container-fluid {
     border-top: none;
     padding-top: 0;
+    padding-bottom: 300px;
 }
 .panel-title {
     text-transform: capitalize;
