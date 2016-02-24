@@ -20,14 +20,14 @@
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{{data.run.all.url + '/' + tsCtrl.browser.id}}">
+                    <a href="{{data.run.all.url + '/' + (data.type==='functional' ? tsCtrl.browser.id : '')}}">
                         <span>{{data.run.all.name}}</span>
                         <span><span class="badge">{{data.run.all.num}}</span></span>
                     </a>
                 </li>
                 <li role="separator" class="divider"></li>
                 <li ng-repeat="test in data.run.tests">
-                    <a href="{{test.url + '/' + tsCtrl.browser.id}}">
+                    <a href="{{test.url + '/' + (data.type==='functional' ? tsCtrl.browser.id : '')}}">
                         <span>{{test.name}}</span>
                         <span><span class="badge">{{test.num}}</span></span>
                     </a>

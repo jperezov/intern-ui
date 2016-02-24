@@ -25,7 +25,7 @@ if (args.site in testModules && args.browser in environments) {
 }
 exec(cmd, function(error, stdout) {
     if (stdout) {
-        console.log(stdout.replace(/\[\d*m/g, '').replace(new RegExp('^.*' + environments[args.site].browserName + '\n', 'm'), ''));
+        console.log(stdout.replace(/\[\d*m/g, '').replace(new RegExp('^.*' + environments[args.browser].browserName + '\n', 'm'), ''));
     } else {
         console.log(JSON.stringify({ error: 'Script did not finish.' }));
     }
