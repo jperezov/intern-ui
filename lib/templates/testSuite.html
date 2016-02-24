@@ -9,13 +9,10 @@
     <div class="panel-footer form-inline text-right">
         <span ng-if="data.type==='functional'">
             Browser:
-            <select class="form-control" ng-model="data.browser" ng-init="data.browser = '0'">
-                <option value="all">All</option>
-                <option value="0" ng-selected="true">Chrome</option>
-                <option value="1">FireFox</option>
-                <option value="2">Safari</option>
-                <option value="3">IE</option>
-            </select>
+            <select
+                    class="form-control"
+                    ng-model="tsCtrl.browser"
+                    ng-options="item as item.label for item in tsCtrl.browsers track by item.id"></select>
         </span>
         <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,14 +20,14 @@
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{{data.run.all.url + '/' + data.browser}}">
+                    <a href="{{data.run.all.url + '/' + tsCtrl.browser.id}}">
                         <span>{{data.run.all.name}}</span>
                         <span><span class="badge">{{data.run.all.num}}</span></span>
                     </a>
                 </li>
                 <li role="separator" class="divider"></li>
                 <li ng-repeat="test in data.run.tests">
-                    <a href="{{test.url + '/' + data.browser}}">
+                    <a href="{{test.url + '/' + tsCtrl.browser.id}}">
                         <span>{{test.name}}</span>
                         <span><span class="badge">{{test.num}}</span></span>
                     </a>

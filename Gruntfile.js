@@ -6,7 +6,16 @@ module.exports = function(grunt) {
         functionalTest = grunt.option('functionalTest') || 'all',
         tests = require('./tests/testModules')(functionalTest),
         testCmd = 'grunt test --site=' + site + ' --functionalTest=' + functionalTest + ' --browser=',
-        pkg = grunt.file.readJSON('package.json');
+        pkg = grunt.file.readJSON('package.json'),
+        environments,
+        execTask = {};
+    try {
+        // Try to grab the outer-level environments.json
+        environments = require('../tests/environments.json');
+    } catch (e) {
+        // Default to local environments.json if not found
+        environments = require('./tests/environments.json');
+    }
     // Set global variable process.env.site for access within the config
     if (globals.get('isGruntTask') === undefined && (task === 'test' || task === 'testAllBrowsers')) {
         console.log('Globals set');
@@ -20,12 +29,16 @@ module.exports = function(grunt) {
     }
     // Error out if the expected unit and functional tests aren't found
     if (
-        task !== 'build' &&
-        task !== 'installation' &&
-        !tests[site] &&
+        task !== 'build' && task !== 'installation' && !tests[site] &&
         (Array.isArray(tests[site].unit) && Array.isArray(tests[site].functional)) === false
     ) {
         throw Error('Missing tests. Check to see if ' + site + ' exists in /tests/testModules.js.');
+    }
+    // Build the exec task (used for running tests in all browsers):
+    for (var i in environments) {
+        execTask["test" + i] = {
+            cmd: testCmd + i
+        };
     }
     grunt.initConfig({
         pkg: pkg,
@@ -34,26 +47,13 @@ module.exports = function(grunt) {
                 options: {
                     runType: 'runner', // defaults to 'client'
                     config: 'tests/intern',
-                    reporters: [ 'Console', 'Lcov' ],
+                    reporters: ['Console', 'Lcov'],
                     suites: tests[site] && tests[site].unit,
                     functionalSuites: tests[site] && tests[site].functional
                 }
             }
         },
-        exec: {
-            test0: {
-                cmd: testCmd + 0
-            },
-            test1: {
-                cmd: testCmd + 1
-            },
-            test2: {
-                cmd: testCmd + 2
-            },
-            test3: {
-                cmd: testCmd + 3
-            }
-        },
+        exec: execTask,
         requirejs: {
             compile: {
                 options: {
@@ -132,8 +132,8 @@ module.exports = function(grunt) {
                 ],
                 options: {
                     process: function(content, srcpath) {
-                         return content.replace(/\/\/~~REMOVE_START~~(.*)\/\/~~REMOVE_END~~/g,
-                             '/intern/order!/node_modules/intern-ui/')
+                        return content.replace(/\/\/~~REMOVE_START~~(.*)\/\/~~REMOVE_END~~/g,
+                            '/intern/order!/node_modules/intern-ui/')
                     }
                 }
             }
@@ -143,11 +143,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask('build', [ 'requirejs', 'copy:main' ]);
-    grunt.registerTask('test', [ 'intern' ]);
-    grunt.registerTask('testAllBrowsers', [ 'exec' ]);
-    grunt.registerTask('installation', [ 'build', 'copy:installation' ]);
-    grunt.registerTask('default', [ 'build' ]);
+    grunt.registerTask('build', ['requirejs', 'copy:main']);
+    grunt.registerTask('test', ['intern']);
+    grunt.registerTask('testAllBrowsers', ['exec']);
+    grunt.registerTask('installation', ['build', 'copy:installation']);
+    grunt.registerTask('default', ['build']);
 
     /**
      * Taken from: https://github.com/jquery/jquery/blob/master/build/tasks/build.js
@@ -164,7 +164,7 @@ module.exports = function(grunt) {
     function convert(name, path, contents) {
         var rdefineEnd = /\}\s*?\);[^}\w]*$/;
         // Convert var modules
-        if ( /.\/var\//.test( path ) ) {
+        if (/.\/var\//.test(path)) {
             contents = contents
                 .replace(/define\([\w\W]*?return/, "    var " + (/var\/([\w-]+)/.exec(name)[1]) + " =")
                 .replace(rdefineEnd, "")

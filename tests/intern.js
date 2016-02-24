@@ -1,24 +1,20 @@
 define([
     'intern',
     './var/dateTime',
-    './var/globals'
-], function(intern, dateTime, globals) {
+    './var/globals',
+    'intern/dojo/text!environments.json'
+], function(intern, dateTime, globals, environments) {
     var site = globals.get('site');
     var isGruntTask = globals.get('isGruntTask');
     var browser = globals.get('browser');
     var functionalTest = globals.get('functionalTest');
+    // intern/dojo/text pulls in a file as text--we need to convert it into an object
+    environments = JSON.parse(environments);
 
     if (isGruntTask) {
         // Remove unit tests when running grunt task for functional tests (or things get wonky)
         delete intern.args.suites;
-        // Some default environments. Feel free to change 'em.
-        // If you wanna use a different testing tunnel, you'll *have* to change them. Just FYI.
-        var environments = [
-            { browserName: 'Chrome', os: 'Windows', os_version: '8' },
-            { browserName: 'Firefox', os: 'Windows', os_version: '8' },
-            { browserName: 'Safari', os: 'OS X', os_version: 'Yosemite' },
-            { browserName: 'IE', browser_version: '10.0', os: 'Windows', os_version: '8' }
-        ];
+        // Environments are found in your tests/environments.json folder
         // Assuming only one environment at a time
         var environment = environments[browser];
         console.log('Running test "' + functionalTest + '" using ' + environment.browserName);
