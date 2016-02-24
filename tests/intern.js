@@ -2,7 +2,7 @@ define([
     'intern',
     './var/dateTime',
     './var/globals',
-    'intern/dojo/text!/tests/environments.json'
+    'intern/dojo/text!./environments.json'
 ], function(intern, dateTime, globals, environments) {
     var site = globals.get('site');
     var isGruntTask = globals.get('isGruntTask');
