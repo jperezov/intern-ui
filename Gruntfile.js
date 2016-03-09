@@ -132,8 +132,8 @@ module.exports = function(grunt) {
                 ],
                 options: {
                     process: function(content, srcpath) {
-                        return content.replace(/\/\/~~REMOVE_START~~(.*)\/\/~~REMOVE_END~~/g,
-                            '/intern/order!/node_modules/intern-ui/')
+                        return content
+                            .replace(/\/\/~~REMOVE_START~~(.|\r\n)*?\/\/~~REMOVE_END~~/g, '');
                     }
                 }
             }

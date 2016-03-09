@@ -62,12 +62,13 @@ define([
             }
         };
         var includedPackages = {};
-        var suites, internConfig, addSuites;
+        var suites, internConfig;
         // Create a new array for the suites to ensure we don't mess with the test suites.
 //~~REMOVE_START~~
+        var addSuites;
         if (intern && intern.args && intern.args.suites) {
 //~~REMOVE_END~~
-            suites = Array.prototype.slice.apply(intern.args.suites);
+        suites = Array.prototype.slice.apply(intern.args.suites);
 //~~REMOVE_START~~
         } else {
             suites = [
