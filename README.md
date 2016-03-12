@@ -3,10 +3,6 @@
 
 WIP. Project is usable, but make sure to always update to the latest version.
 
-## Prerequisites:
-
-Requires node >= 4.0. Grunt must be installed globally: `npm install grunt-cli -g`
-
 ## Warnings:
 
 Installing this package **will overwrite your `/tests` folder**.

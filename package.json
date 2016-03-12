@@ -10,16 +10,17 @@
     "node": "^4.2.1"
   },
   "dependencies": {
-    "grunt": "^0.4.5",
-    "grunt-exec": "^0.4.6",
-    "intern": "^3.0.6",
     "bower": "^1.6.5",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-requirejs": "^0.4.4"
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-exec": "^0.4.6",
+    "intern": "^3.0.6"
   },
   "scripts": {
     "start": "node server 9090",
-    "postinstall": "node_modules/.bin/bower install && grunt installation",
+    "postinstall": "node_modules/.bin/bower install && node_modules/.bin/grunt installation",
     "test": "intern-runner config=tests/intern"
   },
   "description": "A UI for the intern library. Comes with examples to get you started on testing even faster.",
