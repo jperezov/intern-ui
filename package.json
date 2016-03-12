@@ -1,7 +1,7 @@
 {
   "name": "intern-ui",
   "private": false,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Jonathan Perez <jonathan@bluecranegames.com>",
   "contributors": [
     "Jonathan Perez <jonathan@bluecranegames.com>"
@@ -18,7 +18,8 @@
     "grunt-contrib-requirejs": "^0.4.4"
   },
   "scripts": {
-    "start": "node server 80",
+    "start": "node server 9090",
+    "postinstall": "node_modules/.bin/bower install && grunt installation",
     "test": "intern-runner config=tests/intern"
   },
   "description": "A UI for the intern library. Comes with examples to get you started on testing even faster.",

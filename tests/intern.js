@@ -21,7 +21,10 @@ define([
     } else {
         // Otherwise, conditionally add packages for unit tests
 
-        // These map directly to the packages in cPackages
+        /**
+         * Projects are the upper-level folders within your /unit and /functional test folders.
+         * These map directly to the packages in cPackages.
+         */
         var projects = {
             /**
              * "template" is a project. The array defines which packages it uses.
@@ -38,8 +41,15 @@ define([
                 'ngRoute'
             ]
         };
+        /**
+         * These are the actual packages being passed to the intern config.
+         */
         var packages = [];
-        // All custom packages
+        /**
+         * These are all the custom packages that *can* be included.
+         * As projects may have overlapping dependencies, these packages
+         * are assigned to their projects within the `projects` object.
+         */
         var cPackages = {
             /**
              * These packages are here for when you *don't* want to include a file as a dependency, but *do*

@@ -25,23 +25,13 @@ function test(registerSuite, assert, URL, USER, hex) {
                     .click()
                     .pressKeys(USER.TEMPLATE.USERNAME)
                     .end()
-                // Add password in an obfuscated manner to not pass through plaintext value
-                // Not exactly "secure", but at least it's not viewable at-a-glance within
-                // your test logs within Browserstack / Saucelabs / whatever.
-                .execute(function(a) {
-                    /* TODO: DELETE THIS COMMENT (if you actually use this)
-                     * "\x76\x61\x6C\x75\x65"                                     == "value"
-                     * "\x70\x61\x73\x73\x77\x6F\x72\x64"                         == "password"
-                     * "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64" == "getElementById"
-                     *
-                     * document[_0x48f7[2]](_0x48f7[1])[_0x48f7[0]] == document.getElementById("password").value
-                     *
-                     * This is done so you can't just CTRL + F "password" and find the password on the log pages.
-                     * Again, this isn't secure. Don't go using admin-level production accounts for your testing.
-                     */
-                    var _0x48f7 = ["\x76\x61\x6C\x75\x65","\x70\x61\x73\x73\x77\x6F\x72\x64","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64"];
-                    document[_0x48f7[2]](_0x48f7[1])[_0x48f7[0]] = eval('"' + a + '"');
-                }, [hex.encode(USER.TEMPLATE.PASSWORD)])
+                // Find and fill out the form for the password
+                .findById('password')
+                    .click()
+                    // As a word of warning, the password is passed as plaintext to the selenium server.
+                    // Do not test privileged accounts on production environments, as this can be insecure.
+                    .pressKeys(USER.TEMPLATE.PASSWORD)
+                    .end()
                 // Click the submit button
                 .findById('submit')
                     .click()

@@ -79,3 +79,6 @@ var server = http.createServer(function(request, response) {
 server.timeout = 0;
 // Start the server.
 server.listen(parseInt(port, 10));
+console.log("Server listening on port 9090.\n" +
+    "Access at http://localhost:9090/node_modules/intern-ui/\n" +
+    "Type CTRL + C at any time to quit.");
