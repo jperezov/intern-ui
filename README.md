@@ -34,23 +34,49 @@ it muddling your tests.
 
 ## Creating Tests
 
-Running the installation script (`node node_modules/intern-ui/installation.js`) will overwrite your
-projects `/tests` folder with all the files within the `node_modules/intern-ui/tests` folder. These
-files are altered during the copy, so you _must_ run the installation script, and cannot just copy
-the folder over to make proper use of this project.
+### File Structure
 
-### Resources
+In order to be picked up by the UI, the following file structure must be adhered to:
 
-As this project completely relies on [The Intern](https://theintern.github.io), here are
-some shortcuts to the documentation there. I plan on adding enough documentation here to make
-it a one-stop-shop for learning how to make tests, but these resources will always be useful:
+    /tests
+        /functional
+            /yourProjectName
+                all.js
+                yourTest.js
+        /unit
+            /yourProjectName
+                /mock
+                    yourLocalHelpers.js
+                /yourModuleGroup
+                    all.js
+                    yourTest.js
+                all.js
 
-- [Writing unit tests in the Object interface](https://theintern.github.io/intern/#interface-object)
-    - Currently, I have only tested the Object interface when writing tests in this project. This will be updated in future versions.
-- [Unit tests](https://theintern.github.io/intern/#writing-unit-test)
-    - Unit tests are designed to test individual modules / functions within your code base.
-- [Functional tests](https://theintern.github.io/intern/#writing-functional-test)
-    - Functional tests are designed to automate the manual testing you do now.
+Where `yourProjectName` may be a single library, or a full-blown
+website with multiple scripts. `yourModuleGroup` is an organizational
+sub-folder, such as "controllers", "models", etc.
+
+The other folders within `/test` are mere recommendations, not requirements.
+
+Within `/yourProjectName`, all javascript files _not_ in the `/mock` folder
+will be included as a test. `all.js` is required to be able to run all tests
+within the folder. These tests must be manually added into the dependency array.
+Future versions of intern-ui will automate this process.
+
+`all.js` follows the following structure:
+
+    if (typeof define === 'function') {
+        define([
+            './yourTest',
+            './yourModuleGroup/all'
+        ], function() {});
+    } else {
+        module.exports = function() {};
+    }
+
+It's simply a RequireJS Asynchronous Module Definition (AMD). The CommonJS
+export is used for the UI, and _is_ required. You must manually add your
+tests within the dependency array passed through to the `define` function.
 
 ### Unit Tests
 
@@ -75,3 +101,23 @@ your project's name. A login example is included to get you started.
 Within `/tests/intern.js`, edit the `internConfig` object to change the intern's
 configuration (e.g. to add your BrowserStack / SauceLabs credentials). To add
 global dependencies to your tests, edit the `projects` and `cPackages` objects.
+
+To add browsers to the UI's browser drop-down, edit `/tests/environments.json`.
+This file _must_ be updated if using a cloud testing service other than BrowserStack.
+An example file for SauceLabs will be included in the future. For now, just follow
+the [naming convention for SauceLabs](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
+and [naming conventions for BrowserStack](https://www.browserstack.com/list-of-browsers-and-platforms?product=automate)
+to properly add / edit browsers into `environments.json`.
+
+### Resources
+
+As this project completely relies on [The Intern](https://theintern.github.io), here are
+some shortcuts to the documentation there. I plan on adding enough documentation here to make
+it a one-stop-shop for learning how to make tests, but these resources will always be useful:
+
+- [Writing unit tests in the Object interface](https://theintern.github.io/intern/#interface-object)
+    - Currently, I have only tested the Object interface when writing tests in this project. This will be updated in future versions.
+- [Unit tests](https://theintern.github.io/intern/#writing-unit-test)
+    - Unit tests are designed to test individual modules / functions within your code base.
+- [Functional tests](https://theintern.github.io/intern/#writing-functional-test)
+    - Functional tests are designed to automate the manual testing you do now.
